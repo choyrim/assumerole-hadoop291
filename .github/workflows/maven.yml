@@ -22,7 +22,12 @@ jobs:
         java-version: 1.8
     - name: Maven Version
       run: mvn --version
-    - name: Parse ref
-      run: mvn help:evaluate -Dexpression=project.version -Dchangelist= -Drevision=$(perl -e '$_=$ENV{GITHUB_REF};s/^v//;print')
+    - name: check
+      run: |
+        echo "GITHUB_REF=$GITHUB_REF"
+        perl --version
+        export VERSION=$(perl -e '$_=$ENV{GITHUB_REF}||"xxx";s/^v//;print')
+        echo "VERSION=$VERSION"
+        mvn help:evaluate -Dexpression=project.version -Dchangelist= -Drevision="$VERSION"
     - name: Build with Maven
       run: mvn -B package --file pom.xml
