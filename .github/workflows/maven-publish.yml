@@ -25,7 +25,7 @@ jobs:
     - name: Set release version
       run: |
         echo "GITHUB_REF=$GITHUB_REF"
-        export VERSION=$(perl -e '$_=$ENV{GITHUB_REF};s/^v//;print')
+        export VERSION=$(perl -e '$_=$ENV{GITHUB_REF};s|^refs/tags/||;s/^v//;print')
         echo "VERSION=$VERSION"
         echo "VERSION=$VERSION" >>$GITHUB_ENV
     - name: Cache Maven packages
