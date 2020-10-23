@@ -50,4 +50,13 @@
             <version>2.9.1</version>
         </dependency>
     </dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/choyrim/assumerole-hadoop291</url>
+        </repository>
+    </distributionManagement>
+
 </project>
